@@ -11,14 +11,14 @@ import tensorflow
 import pytest
 from tensorflow import keras
 
-model = keras.models.load_model("./model.h5")
+model = keras.models.load_model("../model.h5")
 
 #making predictions
 from PIL import Image
 from itertools import groupby
 
 'loading image'
-image = Image.open("./testing.png").convert("L")
+image = Image.open("../testing.png").convert("L")
 
 'resizing to 28 height pixels'
 w = image.size[0]
