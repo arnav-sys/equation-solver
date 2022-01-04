@@ -284,9 +284,63 @@ while True:
         print(m_exp_str)
         break
 
+#------------------------------
+
+#~~~5. hypertuning the model~~~
+from sklearn.metrics import accuracy_score
+import optuna
+
+def objective(trial):
+
+    filters = trial.suggest_int("filters", 1, 128)
+
+    padding = trial.suggest_categorical("padding", ["valid", "same"])
+    
+    data_format = trial.suggest_categorical("data_format",["channels_last","channels_first"])
+    
+    groups = trial.suggest_int("groups",1,10)
+    
+    use_bias = trial.suggest_categorical("use_bias",["True","False"])
+    
+    
+
+    model = Sequential()
+
+    model.add(Conv2D(filters = filters, kernel_size = (5,5), padding = padding, activation = "relu", input_shape = (28, 28, 1)))
+    model.add(Conv2D(filters = filters, kernel_size = (5,5), padding = padding, activation = "relu"))
+    model.add(MaxPool2D(pool_size = (2,2)))
+    model.add(Dropout(0.25))
+
+    model.add(Conv2D(filters = filters, kernel_size = (3,3), padding = padding, activation = "relu"))
+    model.add(Conv2D(filters = filters, kernel_size = (3,3), padding = padding, activation = "relu"))
+    model.add(MaxPool2D(pool_size = (2,2)))
+    model.add(Dropout(0.25))
+
+    model.add(Flatten())
+    model.add(Dense(256, activation = "relu"))
+    model.add(Dropout(0.25))
+    model.add(Dense(14, activation = "softmax"))
+    
+    model.compile(optimizer = optimizer, loss = "categorical_crossentropy", metrics = ["accuracy"])
+    
+    history = model.fit_generator(
+                                datagen.flow(X_train,y_train, batch_size=batch_size),
+                                epochs = epochs, #An epoch is an iteration over the entire x and y data provided
+                                validation_data = (X_val,y_val), #Data on which to evaluate the loss and any model metrics at the end of each epoch. 
+                                verbose = 2, #output
+                                steps_per_epoch=X_train.shape[0] // batch_size,  # Total number of steps (batches of samples) before declaring one epoch finished and starting the next epoch.
+                                callbacks=[learning_rate_reduction]                            
+                              )
+    
+
+study = optuna.create_study()
+study.optimize(objective, n_trials = 500)
+
+print("study.best_params")
+
 #-------------------------------
 
-#~~~5. Model Update~~~
+#~~~6. Model Update~~~
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def model_update(X, y, model):
