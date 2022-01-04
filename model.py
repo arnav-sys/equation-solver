@@ -13,6 +13,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 import seaborn as sns
+import tensorflow
 
 np.random.seed(2)
 
@@ -344,10 +345,6 @@ print("study.best_params")
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def model_update(X, y, model):
-    
-    from tensorflow.keras.optimizers import RMSprop
-    from tensorflow.keras.utils import to_categorical
-    from tensorflow.keras.preprocessing.image import ImageDataGenerator
       
     y = to_categorical(y, num_classes = 14)
     
