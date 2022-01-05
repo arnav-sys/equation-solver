@@ -1,6 +1,6 @@
 tensorflow
 pandas
 Pillow
-itertools
+more-itertools
 sklearn
 numpy
