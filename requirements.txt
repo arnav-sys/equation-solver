@@ -1,2 +1,6 @@
 tensorflow
 pandas
+PIL
+itertools
+sklearn
+numpy
