@@ -4,4 +4,4 @@ Pillow
 more-itertools
 sklearn
 numpy
-Streamlit
+streamlit
