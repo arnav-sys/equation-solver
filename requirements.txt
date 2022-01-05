@@ -1,6 +1,6 @@
 tensorflow
 pandas
-PIL
+Pillow
 itertools
 sklearn
 numpy
