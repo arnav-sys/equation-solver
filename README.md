@@ -13,8 +13,8 @@ dataframe
 # model building
 for this project I used convolutional neural networks. I used keras sequential api to build the convolutional neural networks. In order to optimize the algorithm I used a tool called optuna.
 
-#caluclating results
+# calculating results
 after our model predicted the numbers, it is time to solve those numbers. In my model.py file there is a function named calculator which exactly do's the same thing
 
-#app building
+# app building
 I used streamlit to make the ui of the application.
