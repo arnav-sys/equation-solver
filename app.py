@@ -13,7 +13,6 @@ import tensorflow
 from PIL import Image
 from tensorflow import keras
 from itertools import groupby
-import cv2
 
 
 ml_model = keras.models.load_model("./model.h5")
