@@ -1,7 +1,1 @@
-tensorflow
-pandas
-Pillow
-more-itertools
-sklearn
-numpy
-streamlit
+
