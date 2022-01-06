@@ -430,7 +430,8 @@ else:
     'if expression is correctly predicted'
     pass
 
-
+import sys
+sys.modules[__name__] = math_expression_generator
 
 
 
