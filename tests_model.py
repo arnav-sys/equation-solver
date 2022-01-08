@@ -89,4 +89,4 @@ def test_model():
      true_predictions = [ 9,  8, 10 , 7,  6, 13 , 5,  4, 11,  3,  2, 12,  1 , 0]
 
      from sklearn.metrics import accuracy_score
-     assert accuracy_score(true_predictions, predictions) > 0.9
+     assert accuracy_score(true_predictions, predictions) > 9.0
